@@ -11,10 +11,14 @@
 #include <cstdio>
 #include <cstring>
 
-Scanner::Scanner() {
-    // Constructor could initialize network interfaces or configurations if necessary
-}
+// The constructor of Scanner class. It doesn't need to perform any extra
+// operations for now.
+Scanner::Scanner() {}
 
+/**
+ * scanSubnet method runs an arp-scan on the local subnet, parses the output
+ * @return a list of nodes (or hosts)
+ */
 std::vector<Node> Scanner::scanSubnet() {
     std::vector<Node> nodes;
     std::string arpScanResult = executeCommand("arp-scan --localnet");
@@ -22,24 +26,43 @@ std::vector<Node> Scanner::scanSubnet() {
     return nodes;
 }
 
+/**
+ * executeCommand method executes a shell command
+ * @param cmd
+ * @return the output
+ */
 std::string Scanner::executeCommand(const std::string& cmd) {
+    std::cout << cmd << std::endl;
     std::array<char, 128> buffer;
     std::string result;
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd.c_str(), "r"), pclose);
+    std::unique_ptr<FILE, decltype(&pclose)>
+            pipe(popen(cmd.c_str(), "r"), pclose);
     if (!pipe) {
         throw std::runtime_error("popen() failed!");
     }
-    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+    while (fgets(buffer.data(),
+                 buffer.size(),
+                 pipe.get()) != nullptr) {
+        std::cout << "buffer.data() is " << buffer.data();
         result += buffer.data();
     }
     return result;
 }
 
-void Scanner::parseArpResult(const std::string& result, std::vector<Node>& nodes) {
+/**
+ * parseArpResult method parses the output of arp-scan and populates a list
+ * of nodes
+ * @param result
+ * @param nodes
+ */
+void Scanner::parseArpResult(
+        const std::string& result,
+        std::vector<Node>& nodes) {
     std::istringstream iss(result);
     std::string line;
     while (std::getline(iss, line)) {
-        if (line.find("Interface:") == std::string::npos) { // Simple filter to exclude headers
+        // Simple filter to exclude headers
+        if (line.find("Interface:") == std::string::npos) {
             std::istringstream ls(line);
             Node node;
             if (ls >> node.ipAddress >> node.macAddress) {
@@ -48,4 +71,3 @@ void Scanner::parseArpResult(const std::string& result, std::vector<Node>& nodes
         }
     }
 }
-
