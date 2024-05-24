@@ -19,18 +19,33 @@
  * This is a helper function that checks if a given `line` from a hosts
  * file is valid.
  * @param line | This is a line from the hosts file
- * @return Returns `true` if the line matches a regex pattern indicating
- * a valid hosts file entry (an IP address followed by one or more
- * hostnames). Otherwise, it returns `false`.
+ * @return Returns `true` if the line shouold be included in hosts.
+ * Otherwise, it returns `false`.
  */
 bool isValidHostsEntry(const std::string& line)
 {
-    std::regex hostsEntryPattern(R"(^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s([\w\.-]+)(\s[\w\.-]+)*$)");
-    if(std::regex_match(line, hostsEntryPattern))
-        return true;
+    char szTemp[1024];
+    strcpy(szTemp,line.c_str());
+    //std::cout << __FUNCTION__ << " line= " << line << std::endl;
+    if(0 == strncmp("Starting",szTemp,8)) {
+        //std::cout << "Starting detected" << std::endl;
+        return false;
+    }
+    if(0 == strncmp("Ending",szTemp,6)) {
+        //std::cout << "Starting detected" << std::endl;
+        return false;
+    }
+    if(0 == strncmp("packets",&szTemp[strlen(szTemp)-7],7)) {
+        //std::cout << "packets detected" << std::endl;
+        return false;
+    }
+    if(0 == strncmp("errors",&szTemp[15],6)) {
+        //std::cout << "errors detected" << std::endl;
+        return false;
+    }
 
-    // Return false if line does not match the pattern
-    return false;
+    return true;
+
 }
 
 /**
@@ -48,7 +63,8 @@ void cleanHostsFile()
     if (inputFile.is_open() && outputFile.is_open()) {
         while (getline(inputFile, line)) {
             if (isValidHostsEntry(line)) {
-                std::cout << __FUNCTION__ << ": " << line << std::endl;
+                //std::cerr << "Valid hosts entry: " << line << std::endl;
+                //std::cout << __FUNCTION__ << ": " << line << std::endl;
                 outputFile << line << std::endl;
             }
         }

@@ -1,6 +1,7 @@
 #include "Scanner.h"
 #include <stdlib.h>
 #include "MacLookup.h"
+#include "MacAddr2DNS.h"
 #include "HostFileGenerator.h"
 #include "Utilities.h"
 #include <iostream>
@@ -21,6 +22,25 @@ int main() {
         for (auto& node : nodes) {
             node.manufacturer = macLookup.lookupManufacturerWeb(node.macAddress);
         }
+
+
+        MacAddr2DNS dnsLookup;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Generate /etc/hosts style file
         HostFileGenerator fileGenerator;

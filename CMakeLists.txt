@@ -19,10 +19,14 @@ set(SRCS src/main.cpp src/Scanner.cpp src/MacLookup.cpp
         include/urlencode.h
         src/cleanHostsFile.cpp
         include/cleanHostsFile.h
-        src/Scanner.cpp)
+        src/Scanner.cpp
+        src/MacAddr2DNS.cpp
+        include/MacAddr2DNS.h)
 
 # Specify the executable target
-add_executable(arpegio ${SRCS})
+add_executable(arpegio ${SRCS}
+        src/MacAddr2DNS.cpp
+        include/MacAddr2DNS.h)
 
 # Link the executable with necessary libraries
 target_link_libraries(arpegio ${CURL_LIBRARY})
