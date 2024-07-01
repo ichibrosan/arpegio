@@ -12,6 +12,7 @@
 #include <string>
 #include <regex>
 #include <iostream>
+#include <string.h>
 #include "../include/cleanHostsFile.h"
 
 /**

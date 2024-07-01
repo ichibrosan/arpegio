@@ -18,3 +18,4 @@ b0:41:6f:0a:a8:ce,beelinketh
 10:6f:d9:da:31:41,vesta-wifi
 98:b7:85:01:06:c2,vesta-eth1g
 98:b7:85:01:06:c2,vesta-10g1
+d8:3a:dd:c3:9f:85,nadia
