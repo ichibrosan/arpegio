@@ -1,6 +1,8 @@
+c8:7f:54:6a:6b:42,daphne
+
 fc:3f:a6:69:41:b2,eero1
 06:f3:27:f1:71:a3,dlgiphone
-9c:57:bc:36:a5:72:eero2
+9c:57:bc:36:a5:72,eero2
 a8:b5:7c:f4:33:a3,dwgroku
 a8:b5:7c:d4:73:47,dlgroku
 90:48:6c:3d:41:e9,ring1

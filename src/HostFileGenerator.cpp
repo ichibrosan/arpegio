@@ -31,11 +31,20 @@ void HostFileGenerator::generateHostFile(const std::vector<Node>& nodes) {
 
     MacAddr2DNS dnsNameProvider;
     outFile << "# Generated Hosts File\n";
+    outFile << "192.168.4.17    daphne\n";
+    outFile << "192.168.4.222   dante\n";
 
     for (const auto& node : nodes) {
         outFile << formatHostEntry(node, dnsNameProvider) << std::endl;
     }
 
+    outFile << "# The following lines are desirable for IPv6 hosts\n";
+    outFile << "::1     localhost ip6-localhost ip6-loopback\n";
+    outFile << "fe00::0 ip6-localnet\n";
+    outFile << "ff00::0 ip6-mcastprefix\n";
+    outFile << "ff02::1 ip6-allnodes\n";
+    outFile << "ff02::2 ip6-allrouters\n";
+    outFile << "ff02::3 ip6-allhosts\n\n";
     outFile.close();
     cleanHostsFile();
 }

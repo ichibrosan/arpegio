@@ -1,10 +1,19 @@
 # Generated Hosts File
+192.168.4.17    daphne
+192.168.4.222   dante
 192.168.4.1	node-fc3fa667abd2	# fc:3f:a6:67:ab:d2
 192.168.4.22	eero1	# fc:3f:a6:69:41:b2
-192.168.4.25	node-001a6203da44	# 00:1a:62:03:da:44
 192.168.4.16	node-445ce9c5f55a	# 44:5c:e9:c5:f5:5a
-192.168.4.27	node-9c57bc36a572	# 9c:57:bc:36:a5:72
+192.168.4.25	node-001a6203da44	# 00:1a:62:03:da:44
+192.168.4.27	eero2	# 9c:57:bc:36:a5:72
 192.168.4.34	ring1	# 90:48:6c:3d:41:e9
-192.168.4.230	nadia	# d8:3a:dd:c3:9f:85
-192.168.4.230	nadia	# d8:3a:dd:c3:9f:85
-192.168.4.249	wemo	# 30:23:03:52:06:39
+192.168.4.35	dlgmac	# 88:e9:fe:55:24:ed
+192.168.4.213	node-f85128d41402	# f8:51:28:d4:14:02
+# The following lines are desirable for IPv6 hosts
+::1     localhost ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+
